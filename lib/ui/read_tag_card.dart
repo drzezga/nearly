@@ -1,9 +1,11 @@
 import 'package:flutter/material.dart';
 
+import '../model/tag.dart';
+
 class ReadTagCard extends StatelessWidget {
-  final Widget text;
+  final Tag tag;
   final GestureTapCallback? onTap;
-  const ReadTagCard(this.text, {Key? key, this.onTap}) : super(key: key);
+  const ReadTagCard(this.tag, {Key? key, this.onTap}) : super(key: key);
  // Text("Sygnalizacja dla pieszych jest zielona"),
   @override
   Widget build(BuildContext context) {
@@ -21,10 +23,10 @@ class ReadTagCard extends StatelessWidget {
               children: [
                 Row(
                   crossAxisAlignment: CrossAxisAlignment.center,
-                  children: const [
-                    Icon(Icons.traffic),
-                    SizedBox(width: 10),
-                    Flexible(child: Text("Przejście dla pieszych", style: TextStyle(fontSize: 24),)),
+                  children: [
+                    Icon(tag.type.icon),
+                    const SizedBox(width: 10),
+                    Flexible(child: Text(tag.type.title, style: const TextStyle(fontSize: 24),)),
                     // Row(
                     //   mainAxisAlignment: MainAxisAlignment.end,
                     //   children: [
@@ -35,7 +37,7 @@ class ReadTagCard extends StatelessWidget {
                     // )
                   ]
                 ),
-                Text("Można bezpiecznie przejść przez pasy"),
+                Text(tag.payload),
               ],
             ),
           ),

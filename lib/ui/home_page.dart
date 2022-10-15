@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:hackathon/bloc/tag_bloc.dart';
 import 'package:hackathon/ui/read_tag_card.dart';
 import '../bloc/settings_cubit.dart';
+import '../model/tag.dart';
 import 'settings_page.dart';
 
 class HomePage extends StatefulWidget {
@@ -53,34 +55,39 @@ class _HomePageState extends State<HomePage> {
                     icon: const Icon(Icons.settings),
                     onPressed: () => {
                           Navigator.push(
-                            context,
-                            MaterialPageRoute(
-                            //     builder: (context) => BlocProvider(create: (_) => NotificationPreferencesCubit(), child: const SettingsPage())),
-                              builder: (_) => const SettingsPage())
-                          )
+                              context,
+                              MaterialPageRoute(
+                                  //     builder: (context) => BlocProvider(create: (_) => NotificationPreferencesCubit(), child: const SettingsPage())),
+                                  builder: (_) => const SettingsPage()))
                         })
               ]),
-          SliverToBoxAdapter(
-            child: BlocBuilder(
-              builder: (context, dynamic) {
-                return Text("ds");
-              },
-            )
-          ),
-          SliverToBoxAdapter(
-            child: Padding(
-              padding:
-                const EdgeInsets.only(left: 10.0, right: 10.0, top: 10.0),
-              child: ReadTagCard(const Text("dwqhiududguiwq"), onTap: () {}),
-            ),
-          ),
-          SliverToBoxAdapter(
-            child: Padding(
-              padding:
-                  const EdgeInsets.only(left: 10.0, right: 10.0, top: 10.0),
-              child: ReadTagCard(const Text("dwqhiududguiwq"), onTap: () {}),
-            ),
-          ),
+          SliverToBoxAdapter(child: BlocBuilder<TagBloc, List<Tag>>(
+            builder: (context, state) {
+              return Column(
+                children: [
+                  for (var tag in state)
+                    Padding(
+                        padding: const EdgeInsets.only(
+                            left: 10.0, right: 10.0, top: 10.0),
+                        child: ReadTagCard(tag, onTap: () {}))
+                ],
+              );
+            },
+          )),
+          // SliverToBoxAdapter(
+          //   child: Padding(
+          //     padding:
+          //         const EdgeInsets.only(left: 10.0, right: 10.0, top: 10.0),
+          //     child: ReadTagCard(const Text("dwqhiududguiwq"), onTap: () {}),
+          //   ),
+          // ),
+          // SliverToBoxAdapter(
+          //   child: Padding(
+          //     padding:
+          //         const EdgeInsets.only(left: 10.0, right: 10.0, top: 10.0),
+          //     child: ReadTagCard(const Text("dwqhiududguiwq"), onTap: () {}),
+          //   ),
+          // ),
         ],
       ),
     );
