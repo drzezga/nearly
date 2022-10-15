@@ -19,6 +19,7 @@ class MyApp extends StatelessWidget {
 
       theme: ThemeData(
         useMaterial3: true,
+        // fontFamily: ,
         // This is the theme of your application.
         //
         // Try running your application with "flutter run". You'll see the
@@ -28,10 +29,14 @@ class MyApp extends StatelessWidget {
         // or simply save your changes to "hot reload" in a Flutter IDE).
         // Notice that the counter didn't reset back to zero; the application
         // is not restarted.
+        // appBarTheme: AppBarTheme(
+        //   backgroundColor: Colors.indigo.shade100
+        // ),
+        // canvasColor: Colors.indigo.shade50,
         primarySwatch: Colors.indigo,
       ),
       home: MultiBlocProvider(providers: [
-        BlocProvider(create: (_) => NotificationPreferencesCubit())
+        BlocProvider(create: (_) => NotificationPreferencesCubit(), lazy: false,)
       ], child: const HomePage(title: 'Nearly')),
     );
   }
