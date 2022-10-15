@@ -5,6 +5,7 @@ enum TagType {
   pedestrianStop,
   busDeparture,
   parkAndGo,
+  other,
 }
 
 extension TagTypeExtension on TagType {
@@ -18,6 +19,8 @@ extension TagTypeExtension on TagType {
         return 'Odjazd';
       case TagType.parkAndGo:
         return 'Parkuj i jedź';
+      case TagType.other:
+        return 'Inne';
     }
   }
 
@@ -31,6 +34,8 @@ extension TagTypeExtension on TagType {
         return Icons.directions_bus;
       case TagType.parkAndGo:
         return Icons.local_parking;
+      case TagType.other:
+        return Icons.info;
     }
   }
 }
