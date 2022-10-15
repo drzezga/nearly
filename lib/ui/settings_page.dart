@@ -25,7 +25,10 @@ class _SettingsPageState extends State<SettingsPage> {
                   leading: Icon(notificationSchema[entry.key]!.icon),
                   title: Text(notificationSchema[entry.key]!.displayName),
                   onToggle: (value) {
-                    context.read<NotificationPreferencesCubit>().toggleSetting(entry.key);
+                    setState(() {
+                      context.read<NotificationPreferencesCubit>().toggleSetting(entry.key);
+
+                    });
                     // setState(() {
                     //   warningsState = !warningsState;
                     // });

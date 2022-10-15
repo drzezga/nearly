@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:hackathon/bloc/settings_cubit.dart';
 
-import 'home_page.dart';
+import 'ui/home_page.dart';
 
 void main() {
   runApp(const MyApp());
@@ -14,8 +14,10 @@ class MyApp extends StatelessWidget {
   // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      title: 'Nearly',
+    return MultiBlocProvider(providers: [
+      BlocProvider(create: (_) => NotificationPreferencesCubit(), lazy: false,)
+    ], child: MaterialApp(
+      title: "Nearly",
 
       theme: ThemeData(
         useMaterial3: true,
@@ -35,9 +37,8 @@ class MyApp extends StatelessWidget {
         // canvasColor: Colors.indigo.shade50,
         primarySwatch: Colors.indigo,
       ),
-      home: MultiBlocProvider(providers: [
-        BlocProvider(create: (_) => NotificationPreferencesCubit(), lazy: false,)
-      ], child: const HomePage(title: 'Nearly')),
-    );
+      home: const HomePage(title: 'Nearly'),
+    ));
+    // return
   }
 }

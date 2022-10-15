@@ -25,12 +25,6 @@ class HomePage extends StatefulWidget {
 class _HomePageState extends State<HomePage> {
   @override
   Widget build(BuildContext context) {
-    // This method is rerun every time setState is called, for instance as done
-    // by the _incrementCounter method above.
-    //
-    // The Flutter framework has been optimized to make rerunning build methods
-    // fast, so that you can just rebuild anything that needs updating rather
-    // than having to individually change instances of widgets.
     return Scaffold(
       body: CustomScrollView(
         // Column is also a layout widget. It takes a list of children and
@@ -61,26 +55,34 @@ class _HomePageState extends State<HomePage> {
                           Navigator.push(
                             context,
                             MaterialPageRoute(
-                                builder: (context) => BlocProvider(create: (_) => NotificationPreferencesCubit(), child: const SettingsPage())),
+                            //     builder: (context) => BlocProvider(create: (_) => NotificationPreferencesCubit(), child: const SettingsPage())),
+                              builder: (_) => const SettingsPage())
                           )
                         })
               ]),
           SliverToBoxAdapter(
+            child: BlocBuilder(
+              builder: (context, dynamic) {
+                return Text("ds");
+              },
+            )
+          ),
+          SliverToBoxAdapter(
             child: Padding(
               padding:
-                  const EdgeInsets.symmetric(horizontal: 10.0, vertical: 10.0),
+                const EdgeInsets.only(left: 10.0, right: 10.0, top: 10.0),
               child: ReadTagCard(const Text("dwqhiududguiwq"), onTap: () {}),
             ),
           ),
           SliverToBoxAdapter(
             child: Padding(
               padding:
-                  const EdgeInsets.symmetric(horizontal: 10.0, vertical: 10.0),
+                  const EdgeInsets.only(left: 10.0, right: 10.0, top: 10.0),
               child: ReadTagCard(const Text("dwqhiududguiwq"), onTap: () {}),
             ),
-          )
+          ),
         ],
-      ), // This trailing comma makes auto-formatting nicer for build methods.
+      ),
     );
   }
 }

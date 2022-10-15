@@ -17,13 +17,14 @@ class ReadTagCard extends StatelessWidget {
           child: Padding(
             padding: const EdgeInsets.symmetric(vertical: 16.0, horizontal: 20.0),
             child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Row(
-                  crossAxisAlignment: CrossAxisAlignment.start,
+                  crossAxisAlignment: CrossAxisAlignment.center,
                   children: const [
-                    Icon(Icons.cached),
-                    SizedBox(width: 20),
-                    Text("Przejście dla pieszych", style: TextStyle(fontSize: 26),),
+                    Icon(Icons.traffic),
+                    SizedBox(width: 10),
+                    Flexible(child: Text("Przejście dla pieszych", style: TextStyle(fontSize: 24),)),
                     // Row(
                     //   mainAxisAlignment: MainAxisAlignment.end,
                     //   children: [
@@ -34,7 +35,7 @@ class ReadTagCard extends StatelessWidget {
                     // )
                   ]
                 ),
-                // Text("Można bezpiecznie przejść przez pasy"),
+                Text("Można bezpiecznie przejść przez pasy"),
               ],
             ),
           ),
