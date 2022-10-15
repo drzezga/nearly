@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:hackathon/bloc/settings_cubit.dart';
 import 'package:settings_ui/settings_ui.dart';
 
 class SettingsPage extends StatefulWidget {
@@ -15,21 +17,24 @@ class _SettingsPageState extends State<SettingsPage> {
   Widget build(BuildContext context) {
     return Scaffold(
         appBar: AppBar(title: const Text('Ustawienia')),
-        body: SettingsList(
-          sections: [
-            SettingsSection(tiles: [
-              SettingsTile.switchTile(
-                leading: const Icon(Icons.warning),
-                title: const Text('Ostrzeżenia'),
-                onToggle: (value) {
-                  setState(() {
-                    warningsState = !warningsState;
-                  });
-                },
-                initialValue: warningsState,
-              )
-            ])
-          ],
-        ));
+        body: BlocBuilder<NotificationPreferencesCubit, Map<String, bool>>(builder: (context, state) {
+          return SettingsList(
+            sections: [
+              SettingsSection(tiles: [
+                for (var entry in state.entries) SettingsTile.switchTile(
+                  leading: Icon(notificationSchema[entry.key]!.icon),
+                  title: Text(notificationSchema[entry.key]!.displayName),
+                  onToggle: (value) {
+                    context.read<NotificationPreferencesCubit>().toggleSetting(entry.key);
+                    // setState(() {
+                    //   warningsState = !warningsState;
+                    // });
+                  },
+                  initialValue: entry.value,
+                )
+              ])
+            ],
+          );
+        }));
   }
 }

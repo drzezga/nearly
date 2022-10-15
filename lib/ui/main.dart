@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:hackathon/bloc/settings_cubit.dart';
 
 import 'home_page.dart';
 
@@ -14,7 +16,9 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       title: 'Nearly',
+
       theme: ThemeData(
+        useMaterial3: true,
         // This is the theme of your application.
         //
         // Try running your application with "flutter run". You'll see the
@@ -24,9 +28,11 @@ class MyApp extends StatelessWidget {
         // or simply save your changes to "hot reload" in a Flutter IDE).
         // Notice that the counter didn't reset back to zero; the application
         // is not restarted.
-        primarySwatch: Colors.purple,
+        primarySwatch: Colors.indigo,
       ),
-      home: const HomePage(title: 'Flutter Demo Home Page'),
+      home: MultiBlocProvider(providers: [
+        BlocProvider(create: (_) => NotificationPreferencesCubit())
+      ], child: const HomePage(title: 'Nearly')),
     );
   }
 }
