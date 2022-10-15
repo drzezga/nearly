@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:hackathon/bloc/settings_cubit.dart';
 
+import 'bloc/tag_bloc.dart';
 import 'ui/home_page.dart';
 
 void main() {
@@ -15,7 +16,8 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MultiBlocProvider(providers: [
-      BlocProvider(create: (_) => NotificationPreferencesCubit(), lazy: false,)
+      BlocProvider(create: (_) => NotificationPreferencesCubit(), lazy: false,),
+      BlocProvider(create: (_) => TagBloc(), lazy: false),
     ], child: MaterialApp(
       title: "Nearly",
 
