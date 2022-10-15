@@ -40,24 +40,11 @@ extension TagTypeExtension on TagType {
   }
 }
 
-// IconData iconFromTagType(TagType type) {
-//   switch (type) {
-//     case TagType.warning:
-//       return 'Uwaga';
-//     case TagType.pedestrianStop:
-//       return 'Światło na przejściu';
-//     case TagType.busDeparture:
-//       return 'Odjazd';
-//     case TagType.parkAndGo:
-//       return 'Parkuj i jedź';
-//   }
-// }
-
 class Tag {
   final String content;
   final TagType type;
   final dynamic payload;
-  // final long timestamp;
+  final DateTime timestamp;
 
-  const Tag(this.content, this.type, this.payload);
+  const Tag(this.content, this.type, this.payload, this.timestamp);
 }
