@@ -7,6 +7,7 @@ const notificationSchema = {
   'pedestrian_stops': NotificationSchemaItem('Światła dla przechodniów', Icons.traffic_outlined, true),
   'bus_departures': NotificationSchemaItem('Odjazdy autobusów', Icons.directions_bus, false),
   'park_and_gos': NotificationSchemaItem('Parkuj i jedź', Icons.local_parking, false),
+  'others': NotificationSchemaItem("Inne", Icons.info, false),
 };
 
 Map<String, bool> getStartingVal() {

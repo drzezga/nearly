@@ -38,13 +38,29 @@ extension TagTypeExtension on TagType {
         return Icons.info;
     }
   }
+
+  String get setting {
+    switch (this) {
+      case TagType.warning:
+        return 'warnings';
+      case TagType.pedestrianStop:
+        return 'pedestrian_stops';
+      case TagType.busDeparture:
+        return 'bus_departures';
+      case TagType.parkAndGo:
+        return 'park_and_gos';
+      case TagType.other:
+        return 'others';
+    }
+  }
 }
 
 class Tag {
-  final String content;
+  // final String content;
   final TagType type;
   final dynamic payload;
   final DateTime timestamp;
+  final String uuid;
 
-  const Tag(this.content, this.type, this.payload, this.timestamp);
+  const Tag(this.type, this.payload, this.timestamp, this.uuid);
 }

@@ -26,7 +26,7 @@ class _SettingsPageState extends State<SettingsPage> {
                 MaterialPageRoute(
                   //     builder: (context) => BlocProvider(create: (_) => NotificationPreferencesCubit(), child: const SettingsPage())),
                     builder: (_) => const ScanPage()));
-        }, icon: Icon(Icons.abc))],),
+        }, icon: const Icon(Icons.abc))],),
         body: BlocBuilder<NotificationPreferencesCubit, Map<String, bool>>(builder: (context, state) {
           return SettingsList(
             sections: [
