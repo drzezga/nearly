@@ -37,7 +37,7 @@ class ReadTagCard extends StatelessWidget {
                     // )
                   ]
                 ),
-                Text(tag.payload),
+                Text(tag.payload.toString()),
               ],
             ),
           ),

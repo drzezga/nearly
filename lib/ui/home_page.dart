@@ -45,7 +45,15 @@ class _HomePageState extends State<HomePage> {
                     Padding(
                         padding: const EdgeInsets.only(
                             left: 10.0, right: 10.0, top: 10.0),
-                        child: ReadTagCard(tag, onTap: () {_showTagSheet(context, tag);}))
+                        child: ReadTagCard(tag, onTap: () {_showTagSheet(context, tag);})),
+                  if (state.isEmpty) SizedBox(height: 200, child: Column(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: const [
+                      Icon(Icons.question_mark),
+                      SizedBox(height: 20,),
+                      Text("Nie wykryto żadnych komunikatów"),
+                    ],
+                  ))
                 ],
               );
             },
