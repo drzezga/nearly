@@ -9,14 +9,14 @@ import 'app_broadcasting.dart';
 import 'app_scanning.dart';
 import 'package:get/get.dart';
 
-class HomePage extends StatefulWidget {
-  const HomePage({super.key});
+class ScanPage extends StatefulWidget {
+  const ScanPage({super.key});
 
   @override
-  _HomePageState createState() => _HomePageState();
+  _ScanPageState createState() => _ScanPageState();
 }
 
-class _HomePageState extends State<HomePage> with WidgetsBindingObserver {
+class _ScanPageState extends State<ScanPage> with WidgetsBindingObserver {
   final controller = Get.find<RequirementStateController>();
   StreamSubscription<BluetoothState>? _streamBluetooth;
   int currentIndex = 0;

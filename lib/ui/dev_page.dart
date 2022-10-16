@@ -15,29 +15,23 @@ class _DevPageState extends State<DevPage> {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-        appBar: AppBar(title: const Text('DEV')),
-        body: BlocBuilder<NotificationPreferencesCubit, Map<String, bool>>(builder: (context, state) {
-          return SettingsList(
-            sections: [
-              SettingsSection(tiles: [
-                for (var entry in state.entries) SettingsTile.switchTile(
-                  leading: Icon(notificationSchema[entry.key]!.icon),
-                  title: Text(notificationSchema[entry.key]!.displayName),
-                  onToggle: (value) {
-                    setState(() {
-                      context.read<NotificationPreferencesCubit>().toggleSetting(entry.key);
-
-                    });
-                    // setState(() {
-                    //   warningsState = !warningsState;
-                    // });
-                  },
-                  initialValue: entry.value,
-                )
-              ])
-            ],
-          );
-        }));
+    return MaterialApp(
+        home: Scaffold(
+          appBar: AppBar(
+            backgroundColor: Colors.deepPurple,
+            title: Text("Flutter Flat Button"),
+          ),
+          body: Container(
+              width:double.infinity ,
+              padding: EdgeInsets.all(20),
+              alignment: Alignment.topCenter,
+              child:TextButton(
+                child:Text("Button"),
+                onPressed: () {
+                },
+              )
+          ),
+        )
+    );
   }
 }

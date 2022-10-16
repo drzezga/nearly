@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:hackathon/bloc/settings_cubit.dart';
+import 'package:hackathon/ui/home_page.dart';
+import 'package:hackathon/view/home_page.dart';
 import 'package:settings_ui/settings_ui.dart';
 import 'dev_page.dart';
 
@@ -23,7 +25,7 @@ class _SettingsPageState extends State<SettingsPage> {
                 context,
                 MaterialPageRoute(
                   //     builder: (context) => BlocProvider(create: (_) => NotificationPreferencesCubit(), child: const SettingsPage())),
-                    builder: (_) => const DevPage()));
+                    builder: (_) => const ScanPage()));
         }, icon: Icon(Icons.abc))],),
         body: BlocBuilder<NotificationPreferencesCubit, Map<String, bool>>(builder: (context, state) {
           return SettingsList(
