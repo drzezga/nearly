@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:get/get.dart';
 import 'package:hackathon/bloc/settings_cubit.dart';
 
 import 'bloc/tag_bloc.dart';
+import 'controller/requirement_state_controller.dart';
 import 'ui/home_page.dart';
 
 void main() {
@@ -15,10 +17,12 @@ class MyApp extends StatelessWidget {
   // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
+    Get.put(RequirementStateController());
+
     return MultiBlocProvider(providers: [
       BlocProvider(create: (_) => NotificationPreferencesCubit(), lazy: false,),
       BlocProvider(create: (_) => TagBloc(), lazy: false),
-    ], child: MaterialApp(
+    ], child: GetMaterialApp(
       title: "Nearly",
 
       theme: ThemeData(
