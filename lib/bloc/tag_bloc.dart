@@ -19,14 +19,15 @@ class TagBloc extends Bloc<TagEvent, List<Tag>> {
           Tag(TagType.pedestrianStop, 4, DateTime.now(), "a")
         ]) {
     on<TagReadEvent>((event, emit) {
-      int decryptedPayload = -1;
+      int decryptedPayload = event.minor;
 
       for (var tag in state) {
         if (tag.uuid == event.uuid && tag.payload == decryptedPayload) {
           return;
         }
       }
-      emit([Tag(TagType.other, 0, DateTime.now(), event.uuid), ...state]);
+
+      emit([Tag(TagType.other, decryptedPayload, DateTime.now(), event.uuid), ...state]);
     });
   }
 }
