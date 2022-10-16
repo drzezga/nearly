@@ -58,7 +58,7 @@ extension TagTypeExtension on TagType {
 class Tag {
   // final String content;
   final TagType type;
-  final dynamic payload;
+  final int payload;
   final DateTime timestamp;
   final String uuid;
 

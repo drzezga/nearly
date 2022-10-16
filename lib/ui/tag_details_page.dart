@@ -24,7 +24,7 @@ class TagDetailsPage extends StatelessWidget {
             ],
           ),
           const SizedBox(height: 8),
-          Text(tag.payload, textAlign: TextAlign.center,),
+          Text(tag.payload.toString(), textAlign: TextAlign.center,),
           const SizedBox(height: 4),
           Text(tag.timestamp.toLocal().toString(), style: const TextStyle(color: Colors.black26)),
           TextButton(

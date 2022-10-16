@@ -15,8 +15,8 @@ class TagReadEvent extends TagEvent {
 class TagBloc extends Bloc<TagEvent, List<Tag>> {
   TagBloc()
       : super([
-          Tag(TagType.warning, "Wyciek gazu w mieszkaniu przy ul. Marszałkowskiej 9", DateTime.now(), "b"),
-          Tag(TagType.pedestrianStop, "green", DateTime.now(), "a")
+          Tag(TagType.warning, 7, DateTime.now(), "b"),
+          Tag(TagType.pedestrianStop, 4, DateTime.now(), "a")
         ]) {
     on<TagReadEvent>((event, emit) {
       int decryptedPayload = -1;
@@ -26,7 +26,7 @@ class TagBloc extends Bloc<TagEvent, List<Tag>> {
           return;
         }
       }
-      emit([Tag(TagType.other, decryptedPayload, DateTime.now(), event.uuid), ...state]);
+      emit([Tag(TagType.other, 0, DateTime.now(), event.uuid), ...state]);
     });
   }
 }
