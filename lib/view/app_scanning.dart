@@ -5,6 +5,10 @@ import 'package:flutter_beacon/flutter_beacon.dart';
 import '../controller/requirement_state_controller.dart';
 import 'package:get/get.dart';
 
+// wyciek gazu,  swiatlo na przejsciu(czerwone, zielone),
+
+int zmienna_globalna_do_sprawdzenia = 100000;
+
 class TabScanning extends StatefulWidget {
   @override
   _TabScanningState createState() => _TabScanningState();
@@ -66,14 +70,15 @@ class _TabScanningState extends State<TabScanning> {
         flutterBeacon.ranging(regions).listen((RangingResult result) {
       print(result);
       if (mounted) {
-        setState(() {
-          _regionBeacons[result.region] = result.beacons;
-          _beacons.clear();
-          _regionBeacons.values.forEach((list) {
-            _beacons.addAll(list);
+          setState(() {
+            _regionBeacons[result.region] = result.beacons;
+            _beacons.clear();
+            _regionBeacons.values.forEach((list) {
+              _beacons.addAll(list);
+            });
+            _beacons.sort(_compareParameters);
           });
-          _beacons.sort(_compareParameters);
-        });
+
       }
     });
   }
@@ -106,6 +111,8 @@ class _TabScanningState extends State<TabScanning> {
     _streamRanging?.cancel();
     super.dispose();
   }
+
+
 
   @override
   Widget build(BuildContext context) {
