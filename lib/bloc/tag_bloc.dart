@@ -23,12 +23,12 @@ class TagBloc extends Bloc<TagEvent, List<Tag>> {
       int decryptedPayload = event.minor;
 
       for (var tag in state) {
-        if (tag.uuid == event.uuid && tag.payload == decryptedPayload) {
+        if (tag.uuid == event.major.toString() && tag.payload == decryptedPayload) {
           return;
         }
       }
 
-      state.removeWhere((element) => element.uuid == event.uuid);
+      state.removeWhere((element) => element.uuid == event.major.toString());
 
       emit([
         Tag(
