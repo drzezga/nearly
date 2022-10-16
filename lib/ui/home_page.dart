@@ -11,7 +11,6 @@ import '../controller/requirement_state_controller.dart';
 import 'package:get/get.dart';
 import 'dart:async';
 
-
 class HomePage extends StatefulWidget {
   const HomePage({super.key, required this.title});
 
@@ -80,9 +79,12 @@ class _HomePageState extends State<HomePage> {
         setState(() {
           _regionBeacons[result.region] = result.beacons;
           _beacons.clear();
-          _regionBeacons.values.forEach((list) {
+          for (var list in _regionBeacons.values) {
             _beacons.addAll(list);
-          });
+            for (var beacon in list) {
+              context.read<TagBloc>().add(TagReadEvent(beacon.proximityUUID, beacon.minor, beacon.major));
+            }
+          }
           _beacons.sort(_compareParameters);
         });
       }
@@ -146,15 +148,22 @@ class _HomePageState extends State<HomePage> {
                     Padding(
                         padding: const EdgeInsets.only(
                             left: 10.0, right: 10.0, top: 10.0),
-                        child: ReadTagCard(tag, onTap: () {_showTagSheet(context, tag);})),
-                  if (state.isEmpty) SizedBox(height: 200, child: Column(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: const [
-                      Icon(Icons.question_mark),
-                      SizedBox(height: 20,),
-                      Text("Nie wykryto żadnych komunikatów"),
-                    ],
-                  ))
+                        child: ReadTagCard(tag, onTap: () {
+                          _showTagSheet(context, tag);
+                        })),
+                  if (state.isEmpty)
+                    SizedBox(
+                        height: 200,
+                        child: Column(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: const [
+                            Icon(Icons.question_mark),
+                            SizedBox(
+                              height: 20,
+                            ),
+                            Text("Nie wykryto żadnych komunikatów"),
+                          ],
+                        ))
                 ],
               );
             },
