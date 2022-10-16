@@ -4,7 +4,7 @@ import 'package:hackathon/model/tag.dart';
 class Payload {
   final String description;
 
-  const Payload(this.displayName, this.icon, this.description, this.type);
+  const Payload(this.description, this.type);
 
   final TagType type;
 }
