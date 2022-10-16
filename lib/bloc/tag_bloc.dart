@@ -35,7 +35,7 @@ class TagBloc extends Bloc<TagEvent, List<Tag>> {
             mapa[decryptedPayload]!.type,
             decryptedPayload,
             DateTime.now(),
-            event.uuid),
+            event.major.toString()),
         ...state
       ]);
     });

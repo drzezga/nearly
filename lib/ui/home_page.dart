@@ -122,6 +122,10 @@ class _HomePageState extends State<HomePage> {
         identifier: 'BeaconType2',
         proximityUUID: '6a84c716-0f2a-1ce9-f210-6a63bd873dd9',
       ),
+      Region(
+        major: 0,
+        identifier: 'All',
+      ),
     ];
 
     if (_streamRanging != null) {
