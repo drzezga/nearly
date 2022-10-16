@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:hackathon/model/payload.dart';
 import 'package:hackathon/ui/settings_page.dart';
 
 import '../model/tag.dart';
@@ -24,7 +25,7 @@ class TagDetailsPage extends StatelessWidget {
             ],
           ),
           const SizedBox(height: 8),
-          Text(tag.payload.toString(), textAlign: TextAlign.center,),
+          Text(mapa[tag.payload]!.description, textAlign: TextAlign.center,),
           const SizedBox(height: 4),
           Text(tag.timestamp.toLocal().toString(), style: const TextStyle(color: Colors.black26)),
           TextButton(
@@ -34,7 +35,7 @@ class TagDetailsPage extends StatelessWidget {
                   context,
                   MaterialPageRoute(
                     //     builder: (context) => BlocProvider(create: (_) => NotificationPreferencesCubit(), child: const SettingsPage())),
-                      builder: (_) => SettingsPage()));
+                      builder: (_) => const SettingsPage()));
             },
           )
         ],

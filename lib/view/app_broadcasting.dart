@@ -69,8 +69,12 @@ class _TabBroadcastingState extends State<TabBroadcasting> {
                         uuidField,
                         majorField,
                         minorField,
-                        SizedBox(height: 16),
+                        const SizedBox(height: 16),
                         buttonBroadcast,
+                        const Divider(),
+                        specialButton("17d8f277-3a26-453a-a4e3-0a0997c49d3b", 2, 0, "Czerwone"),
+                        specialButton("17d8f277-3a26-453a-a4e3-0a0997c49d3b", 3, 0, "Zielone"),
+                        specialButton("4e73ee66-5a06-4e7b-a67d-b6d2e2185f31", 4, 0, "Autobus"),
                       ],
                     ),
                   ),
@@ -190,6 +194,43 @@ class _TabBroadcastingState extends State<TabBroadcasting> {
         }
       },
       child: Text('Broadcast${broadcasting ? 'ing' : ''}'),
+    );
+  }
+
+
+  Widget specialButton(String uuid, int minor, int major, String caption) {
+    final ButtonStyle raisedButtonStyle = ElevatedButton.styleFrom(
+      onPrimary: Colors.white,
+      primary: broadcasting ? Colors.red : Theme.of(context).primaryColor,
+      minimumSize: Size(88, 36),
+      padding: EdgeInsets.symmetric(horizontal: 16),
+      shape: const RoundedRectangleBorder(
+        borderRadius: BorderRadius.all(Radius.circular(2)),
+      ),
+    );
+
+    return ElevatedButton(
+      style: raisedButtonStyle,
+      onPressed: () async {
+        if (broadcasting) {
+          await flutterBeacon.stopBroadcast();
+        } else {
+          await flutterBeacon.startBroadcast(BeaconBroadcast(
+            proximityUUID: uuid,
+            major: major,
+            minor: minor,
+          ));
+        }
+
+        final isBroadcasting = await flutterBeacon.isBroadcasting();
+
+        if (mounted) {
+          setState(() {
+            broadcasting = isBroadcasting;
+          });
+        }
+      },
+      child: Text(caption + (broadcasting ? ' - on' : ' - off')),
     );
   }
 }

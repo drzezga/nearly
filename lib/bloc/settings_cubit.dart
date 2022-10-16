@@ -21,7 +21,7 @@ Map<String, bool> getStartingVal() {
 }
 
 class NotificationPreferencesCubit extends Cubit<Map<String, bool>> {
-  NotificationPreferencesCubit()  : super(getStartingVal());
+  NotificationPreferencesCubit() : super(getStartingVal());
 
   void toggleSetting(String key) {
     var newState = state;

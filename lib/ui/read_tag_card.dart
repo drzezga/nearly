@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:hackathon/model/payload.dart';
 
 import '../model/tag.dart';
 
@@ -6,12 +7,19 @@ class ReadTagCard extends StatelessWidget {
   final Tag tag;
   final GestureTapCallback? onTap;
   const ReadTagCard(this.tag, {Key? key, this.onTap}) : super(key: key);
+
+  Color? get color {
+    if (tag.type == TagType.warning) return Colors.red.shade200;
+    // if (tag.type == TagType.pedestrianStop && tag.payload == 2) return Colors.yellow.shade50;
+    return null;
+  }
  // Text("Sygnalizacja dla pieszych jest zielona"),
   @override
   Widget build(BuildContext context) {
     return SizedBox(
       width: double.infinity,
       child: Card(
+        color: color,
         clipBehavior: Clip.hardEdge,
         elevation: 0,
         child: InkWell(
@@ -37,7 +45,7 @@ class ReadTagCard extends StatelessWidget {
                     // )
                   ]
                 ),
-                Text(tag.payload.toString()),
+                Text(mapa[tag.payload]!.description),
               ],
             ),
           ),

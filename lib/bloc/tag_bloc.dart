@@ -1,4 +1,5 @@
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:hackathon/model/payload.dart';
 
 import '../model/tag.dart';
 
@@ -15,8 +16,8 @@ class TagReadEvent extends TagEvent {
 class TagBloc extends Bloc<TagEvent, List<Tag>> {
   TagBloc()
       : super([
-          Tag(TagType.warning, 7, DateTime.now(), "b"),
-          Tag(TagType.pedestrianStop, 4, DateTime.now(), "a")
+          Tag(TagType.warning, 0, DateTime.now(), "b"),
+          Tag(TagType.pedestrianStop, 2, DateTime.now(), "a")
         ]) {
     on<TagReadEvent>((event, emit) {
       int decryptedPayload = event.minor;
@@ -27,7 +28,16 @@ class TagBloc extends Bloc<TagEvent, List<Tag>> {
         }
       }
 
-      emit([Tag(TagType.other, decryptedPayload, DateTime.now(), event.uuid), ...state]);
+      state.removeWhere((element) => element.uuid == event.uuid);
+
+      emit([
+        Tag(
+            mapa[decryptedPayload]!.type,
+            decryptedPayload,
+            DateTime.now(),
+            event.uuid),
+        ...state
+      ]);
     });
   }
 }
