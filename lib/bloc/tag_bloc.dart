@@ -16,8 +16,8 @@ class TagReadEvent extends TagEvent {
 class TagBloc extends Bloc<TagEvent, List<Tag>> {
   TagBloc()
       : super([
-          Tag(TagType.warning, 0, DateTime.now(), "b"),
-          Tag(TagType.pedestrianStop, 2, DateTime.now(), "a")
+          // Tag(TagType.warning, 0, DateTime.now(), "b"),
+          // Tag(TagType.pedestrianStop, 2, DateTime.now(), "a")
         ]) {
     on<TagReadEvent>((event, emit) {
       int decryptedPayload = event.minor;
